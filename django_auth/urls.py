@@ -16,9 +16,13 @@ from django.urls import path, include
 from django.contrib import admin
 from accounts.views import index
 from accounts import urls as urls_accounts
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", index, name="index"),
     path("accounts/", include(urls_accounts)),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
